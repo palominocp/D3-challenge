@@ -53,6 +53,19 @@ d3.csv("/assets/data/data.csv").then((data) => {
             .attr("r", "10")
             .attr("fill", "gold")
             .attr("stroke-width", "1")
-            .attr("stroke", "black");
+            .attr("stroke", "black")
+    
+    var elem = chartGroup.selectAll("g")
+        .data(data);
 
-y});
+    var elemEnter = elem.enter()
+        .append("g")
+        .attr("transform", d => `translate(${xLinearScale(d.age)} , ${yLinearScale(d.smokes)})`)
+
+    elemEnter.append("text")
+        .attr("dx", function(d){return -10})
+        .attr("dy", function(d){return +5})
+        .attr("fill", "black")
+        .text(function(d){return d.abbr});
+    
+});
