@@ -24,15 +24,15 @@ var chartGroup = svg.append("g")
 d3.csv("/assets/data/data.csv").then((data) => {
 
     data.forEach(d => {
-        d.age = +d.age;
-        d.smokes = +d.smokes;
+        d.poverty = +d.poverty;
+        d.healthcare = +d.healthcare;
     });
 
     var xLinearScale = d3.scaleLinear().range([0, width])
-        .domain(d3.extent(data, d => d.age));
+        .domain(d3.extent(data, d => d.poverty));
 
     var yLinearScale = d3.scaleLinear().range([height, 0])
-        .domain(d3.extent(data, d => d.smokes));
+        .domain(d3.extent(data, d => d.healthcare));
         
     var xAxis = d3.axisBottom(xLinearScale);
     var yAxis = d3.axisLeft(yLinearScale).ticks(6);
@@ -48,10 +48,10 @@ d3.csv("/assets/data/data.csv").then((data) => {
         .data(data)
         .enter()
         .append("circle")
-            .attr("cx", d => xLinearScale(d.age))
-            .attr("cy", d => yLinearScale(d.smokes))
+            .attr("cx", d => xLinearScale(d.poverty))
+            .attr("cy", d => yLinearScale(d.healthcare))
             .attr("r", "10")
-            .attr("fill", "gold")
+            .attr("fill", "blue")
             .attr("stroke-width", "1")
             .attr("stroke", "black")
     
@@ -60,7 +60,7 @@ d3.csv("/assets/data/data.csv").then((data) => {
 
     var elemEnter = elem.enter()
         .append("g")
-        .attr("transform", d => `translate(${xLinearScale(d.age)} , ${yLinearScale(d.smokes)})`)
+        .attr("transform", d => `translate(${xLinearScale(d.poverty)} , ${yLinearScale(d.healthcare)})`)
 
     elemEnter.append("text")
         .attr("dx", function(d){return -10})
