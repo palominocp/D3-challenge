@@ -56,7 +56,7 @@ d3.csv("/assets/data/data.csv").then((data) => {
             .attr("cy", d => yLinearScale(d.healthcare))
             .attr("r", "10")
             .attr("fill", "rgb(136, 187, 213)")
-            .style("opacity", 0.4)
+            //.style("opacity", 0.4)
             //.attr("stroke-width", "0")
             //.attr("stroke", "black")
     
