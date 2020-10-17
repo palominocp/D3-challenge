@@ -68,7 +68,9 @@ d3.csv("/assets/data/data.csv").then((data) => {
         .attr("dx", function(d){return -8})
         .attr("dy", function(d){return +4})
         .attr("fill", "white")
-        .text(function(d) {return d.abbr})
+        .text(function(d) {
+            console.log(d.abbr);
+            return d.state})
         .style("font-size", "10px");
     
 });
