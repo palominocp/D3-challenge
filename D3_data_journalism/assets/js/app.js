@@ -32,11 +32,11 @@ d3.csv("/assets/data/data.csv").then((data) => {
 
     var xLinearScale = d3.scaleLinear()
         .range([0, width])
-        .domain(d3.extent(data, d => d.poverty));
+        .domain([8, d3.max(data, d => d.poverty)+2]);
 
     var yLinearScale = d3.scaleLinear()
         .range([height, 0])
-        .domain(d3.extent(data, d => d.healthcare));
+        .domain([4, d3.max(data, d => d.healthcare)+2]);
         
     var xAxis = d3.axisBottom(xLinearScale);
     var yAxis = d3.axisLeft(yLinearScale);
@@ -83,16 +83,15 @@ d3.csv("/assets/data/data.csv").then((data) => {
         // Create axes labels
     chartGroup.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", - 60) // margin.left + 40
-    .attr("x", - 260) // (height / 2)
+    .attr("y", - margin.left + 40)
+    .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
-    //.attr("class", "axisText")
+    .attr("class", "aText")
     .text(yLabel);
 
   chartGroup.append("text")
-    .attr("transform", `translate(${width / 2 - 100}, ${height + margin.top + 5})`)
-    .attr("class", "axisText")
+    .attr("transform", `translate(${width / 2}, ${height + margin.top + 5})`)
+    .attr("class", "aText")
     .text("In Poverty (%)");
-
     
 });
